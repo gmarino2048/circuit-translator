@@ -2,18 +2,18 @@
 //
 // may override function definitions made previously
 
-chipname='6800';
+export var chipname='6800';
 
-grChipSize=6600;
-grChipOffsetX=25
-grChipOffsetY=-200;
+export var grChipSize=6600;
+export var grChipOffsetX=25
+export var grChipOffsetY=-200;
 
-ngnd = nodenames['gnd'];
-npwr = nodenames['vcc'];
+export var ngnd = nodenames['gnd'];
+export var npwr = nodenames['vcc'];
 
-nodenamereset = 'reset';
+export var nodenamereset = 'reset';
 
-presetLogLists=[
+export var presetLogLists=[
                 ['cycle',],
                 ['ab','db','rw','vma','Fetch','pc','acca','accb','ix','sp','p'],
                 ['ir','sync','Execute','State'],            // instruction fetch and execution control
@@ -22,7 +22,7 @@ presetLogLists=[
                 ['irq','nmi',nodenamereset,'tsc','dbe','halt','ba'],    // other pins
         ];
 
-function initChip(){
+export function initChip(){
     var start = now();
     for(var nn in nodes) {
         nodes[nn].state = false;
@@ -57,7 +57,7 @@ function initChip(){
 }
 
 // javascript derived from http://segher.ircgeeks.net/6800/OPS
-var disassembly={
+export var disassembly={
     0x00: "!",
     0x01: "nop",
     0x02: "!",

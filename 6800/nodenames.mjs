@@ -20,7 +20,7 @@
  THE SOFTWARE.
 */
 
-var nodenames ={
+export var nodenames ={
 gnd: 663,      // pads: ground
 vcc: 31,       // pads: power
 phi1: 1507,    // pads: phase 1 clock input
