@@ -1,8 +1,9 @@
 
 import { Transistor } from './components/transistor.mjs'
+import { Wire } from './components/wire.mjs'
 
 const EXPECTED_FILENAMES = {
-    transNames: 'nodenames',
+    wireNames: 'nodenames',
     wires: 'segdefs',
     support: 'support',
     transistors: 'transdefs'
@@ -33,4 +34,32 @@ export async function convertTransistors(folderName) {
     }
 
     return transistors
+}
+
+export async function convertWires(folderName, transistorList){
+    var segdefsName = `${folderName}/${EXPECTED_FILENAMES.wires}.mjs`
+    var nodenamesName = `${folderName}/${EXPECTED_FILENAMES.wireNames}.mjs`
+
+    var segdefs = (await import(segdefsName)).segdefs
+    var nodenames = (await import(nodenamesName)).nodenames
+
+    var wires = {}
+    for(var definition of segdefs){
+        var wireId = definition[0].toString()
+
+        if(wireId in wires){
+            wires[wireId].addLine(definition[2], definition.slice(3))
+        }
+        else {
+            var wireNames = findNames(wireId, nodenames)
+            wires[wireId] = new Wire(definition, wireNames, transistorList)
+        }
+    }
+
+    var wireList = []
+    for(var id in wires) {
+        wireList.push(wires[id])
+    }
+
+    return wireList
 }
