@@ -1,5 +1,5 @@
 
-class Transistor {
+export class Transistor {
 
     constructor(defArray) {
         if(!(defArray instanceof Array)) {
@@ -53,9 +53,4 @@ class Transistor {
         return value
     }
 
-}
-
-// Define exports
-module.exports = {
-    Transistor
 }
