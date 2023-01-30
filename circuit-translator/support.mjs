@@ -2,7 +2,7 @@
 // This module inverts the nodenames definition so that the lookup
 // for finding transistor names is faster
 
-export function invertNames(nameLookup) {
+export function invertNodeNames(nameLookup) {
     var invertedNames = {}
 
     for(var name in nameLookup) {
