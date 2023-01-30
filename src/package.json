@@ -1,0 +1,11 @@
+{
+  "name": "circuit-translator",
+  "version": "1.0.0",
+  "description": "Translate web-based circuit definitions to JSON",
+  "main": "main.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Guy Marino <gmarino2048@gmail.com>",
+  "license": "MIT"
+}
