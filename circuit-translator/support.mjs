@@ -1,6 +1,7 @@
 
+import { Circuit } from './components/circuit.mjs'
 import { Transistor } from './components/transistor.mjs'
-import { Wire } from './components/wire.mjs'
+import { Wire, WireSpecial } from './components/wire.mjs'
 
 const EXPECTED_FILENAMES = {
     wireNames: 'nodenames',
@@ -62,4 +63,30 @@ export async function convertWires(folderName, transistorList){
     }
 
     return wireList
+}
+
+export async function convertCircuit(folderName) {
+    var transistorList = await convertTransistors(folderName)
+    var wireList = convertWires(folderName, transistorList)
+
+    // Get the support file for some additional info
+    var supportName = `${folderName}/${EXPECTED_FILENAMES.support}.mjs`
+    var support = await import(supportName)
+
+    // Update all special wires accordingly
+    wireList = await wireList
+    var gndWireIndex = wireList.findIndex(wire => wire.id == support.ngnd)
+    var vccWireIndex = wireList.findIndex(wire => wire.id == support.npwr)
+
+    if(gndWireIndex > -1){
+        wireList[gndWireIndex].special = WireSpecial.gnd
+    }
+    if(vccWireIndex > -1){
+        wireList[vccWireIndex].special = WireSpecial.vcc
+    }
+
+    // Get the chip name from the support file
+    var chipname = support.chipname
+
+    return new Circuit(chipname, wireList, transistorList)
 }

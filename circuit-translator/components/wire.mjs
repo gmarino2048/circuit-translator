@@ -4,6 +4,12 @@ export const WirePulled = {
     none: 'NONE'
 }
 
+export const WireSpecial = {
+    vcc: "VCC",
+    gnd: "GND",
+    none: "NONE"
+}
+
 export class WireRender {
 
     constructor(color, positions) {
@@ -35,6 +41,9 @@ export class Wire {
         if(pulledStatus == '-') {
             this.pulled = WirePulled.none
         }
+
+        // Hold a place for the special wire type
+        this.special = null
 
         // Wire can contain multiple names
         this.name = null
@@ -74,6 +83,10 @@ export class Wire {
 
         if(this.otherNames.length > 0) {
             object['alternate_names'] = this.otherNames
+        }
+
+        if(this.special) {
+            object['special'] = this.special
         }
 
         return object

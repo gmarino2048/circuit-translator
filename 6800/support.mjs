@@ -2,6 +2,8 @@
 //
 // may override function definitions made previously
 
+import {nodenames} from './nodenames.mjs'
+
 export var chipname='6800';
 
 export var grChipSize=6600;
