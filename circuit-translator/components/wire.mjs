@@ -97,6 +97,10 @@ export class Wire {
         var gateTransistors = []
 
         for(var transistor of transistorList) {
+            if(transistor.shouldBeIgnored){
+                continue
+            }
+
             if(this.id == transistor.gateWire){
                 gateTransistors.push(transistor.id)
             }
