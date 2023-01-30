@@ -63,7 +63,7 @@ export class Wire {
         var object = {
             id: this.id,
             pulled: this.pulled,
-            control_transistors: this.controlTransistors,
+            ctrl_transistors: this.controlTransistors,
             gate_transistors: this.gateTransistors,
             lines: this.lines
         }
