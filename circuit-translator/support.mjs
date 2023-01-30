@@ -1,4 +1,6 @@
 
+import { Transistor } from './components/transistor.mjs'
+
 const EXPECTED_FILENAMES = {
     transNames: 'nodenames',
     wires: 'segdefs',
@@ -18,23 +20,13 @@ export function findNames(id, namedefs) {
 
 export async function convertTransistors(folderName) {
     var transdefsName = `${folderName}/${EXPECTED_FILENAMES.transistors}.mjs`
-    var nodenamesName = `${folderName}/${EXPECTED_FILENAMES.transNames}.mjs`
 
     var transdefs = (await import(transdefsName)).transdefs
-    var nodenames = (await import(nodenamesName)).nodenames
-
     var transistors = []
 
-    transdefs.forEach(definition => {
-        var transistor = new Transistor(definition)
-        var transistorNames = findNames(transistor.id, nodenames)
-
-        for(var name of transistorNames) {
-            transistor.addName(name)
-        }
-
-        transistors.push(transistor)
-    })
+    for(var definition of transdefs){
+        transistors.push(new Transistor(definition))
+    }
 
     return transistors
 }

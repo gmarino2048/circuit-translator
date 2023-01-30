@@ -15,13 +15,12 @@ export class Transistor {
         this._id = null
         this._idstr = defArray[0]
 
-        this.name = null
+        this.name = defArray[0]
         this.gateWire = defArray[1]         // Gate
         this.sourceWire = defArray[2]       // Source
         this.drainWire = defArray[3]        // Drain
 
         this.boundingBox = defArray[4]      // Display Bounding Box
-        this.otherNames = []
 
         // This next bit checks for a weak transistor, which is a non-logical
         // transistor used for other purposes
@@ -53,13 +52,32 @@ export class Transistor {
         return value
     }
 
-    addName(altName) {
-        if(!this.name) {
-            this.name = altName
+    get convertedObject() {
+        var object = null
+
+        if(this.name){
+            object = {
+                id: this.id,
+                name: this.name,
+                type: 'NMOS',
+                gate_wire: this.gateWire,
+                source_wire: this.sourceWire,
+                drain_wire: this.drainWire,
+                bounding_box: this.boundingBox
+            }
         }
-        else {
-            this.otherNames.push(altName)
+        else{
+            object = {
+                id: this.id,
+                type: 'NMOS',
+                gate_wire: this.gateWire,
+                source_wire: this.sourceWire,
+                drain_wire: this.drainWire,
+                bounding_box: this.boundingBox
+            }
         }
+
+        return object
     }
 
 }
