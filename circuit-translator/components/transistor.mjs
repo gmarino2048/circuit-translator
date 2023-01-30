@@ -53,4 +53,13 @@ export class Transistor {
         return value
     }
 
+    addName(altName) {
+        if(!this.name) {
+            this.name = altName
+        }
+        else {
+            this.otherNames.push(altName)
+        }
+    }
+
 }
