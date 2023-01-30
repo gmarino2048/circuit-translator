@@ -25,7 +25,11 @@ export async function convertTransistors(folderName) {
     var transistors = []
 
     for(var definition of transdefs){
-        transistors.push(new Transistor(definition))
+        var transistor = new Transistor(definition)
+
+        if(!transistor.shouldBeIgnored){
+            transistors.push(transistor)
+        }
     }
 
     return transistors

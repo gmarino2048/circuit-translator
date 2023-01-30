@@ -27,6 +27,9 @@ export class Transistor {
         if(defArray.length == 7) {
             this.shouldBeIgnored = defArray[6]
         }
+        else {
+            this.shouldBeIgnored = false
+        }
     }
 
     get id() {
@@ -53,28 +56,17 @@ export class Transistor {
     }
 
     get convertedObject() {
-        var object = null
+        var object = {
+            id: this.id,
+            type: 'NMOS',
+            gate_wire: this.gateWire,
+            source_wire: this.sourceWire,
+            drain_wire: this.drainWire,
+            bounding_box: this.boundingBox
+        }
 
         if(this.name){
-            object = {
-                id: this.id,
-                name: this.name,
-                type: 'NMOS',
-                gate_wire: this.gateWire,
-                source_wire: this.sourceWire,
-                drain_wire: this.drainWire,
-                bounding_box: this.boundingBox
-            }
-        }
-        else{
-            object = {
-                id: this.id,
-                type: 'NMOS',
-                gate_wire: this.gateWire,
-                source_wire: this.sourceWire,
-                drain_wire: this.drainWire,
-                bounding_box: this.boundingBox
-            }
+            object['name'] = this.name
         }
 
         return object
