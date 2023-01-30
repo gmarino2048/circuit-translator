@@ -2,18 +2,18 @@
 //
 // may override function definitions made previously
 
-chipname='6502';
+export var chipname='6502';
 
-grChipSize=10000;
-grChipOffsetX=400
-grChipOffsetY=0;
+export var grChipSize=10000;
+export var grChipOffsetX=400
+export var grChipOffsetY=0;
 
-ngnd = nodenames['vss'];
-npwr = nodenames['vcc'];
+export var ngnd = nodenames['vss'];
+export var npwr = nodenames['vcc'];
 
-nodenamereset = 'res';
+export var nodenamereset = 'res';
 
-var presetLogLists=[
+export var presetLogLists=[
     ['cycle'],
     ['ab','db','rw','Fetch','pc','a','x','y','s','p'],
     ['Execute','State'],
@@ -25,7 +25,7 @@ var presetLogLists=[
     ['irq','nmi','res'],
 ];
 
-function initChip(){
+export function initChip(){
     var start = now();
     for(var nn in nodes) {
         nodes[nn].state = false;
@@ -55,7 +55,7 @@ function initChip(){
 }
 
 
-var disassembly={
+export var disassembly={
     0x00:"BRK",
     0x01:"ORA (zp,X)",
     0x05:"ORA zp",
