@@ -12,7 +12,8 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/circuit-translator/main.mjs"
+            "program": "${workspaceFolder}/circuit-translator/main.mjs",
+            "args": ["-i", "./6502", "-o", "6502.json"]
         }
     ]
 }

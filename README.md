@@ -4,6 +4,16 @@ This folder contains the original circuit definitions from the original 6502 lib
 These will need to be updated to work with the more modern circuit simulator program.
 This folder also contains the conversion scripts needed to reformat all of the transistors and wires into the new JSON spec.
 
+## Directions
+
+This tool will automatically convert the CPU definitions provided here, just use the following syntax to perform the conversion
+
+```sh
+node circuit-translator -i 6502 -o 6502.json
+```
+
+You can of course swap the 6502 processor for the 6800 if desired. This should generate a JSON format compatible with the circuit-simulator repository.
+
 ## Transistor Definition Format
 
 The transistor definitions are provided in an array called `transdefs`, where each entry looks something like:
